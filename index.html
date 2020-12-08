@@ -17,6 +17,8 @@
             display: inline-block;
         }
 
+
+
         .pull-right {
             float: right;
         }
@@ -60,8 +62,8 @@
 
 <body>
     <h1 style="text-align: center; ">Todo </h1>
-    <p class="para" style=" margin-top: 15px;">Here You can add Your work and then delete after the completion
-    </p>
+    <h3 tyle=" margin-top: 15px;">Here You can add Your work and then delete after the completion
+    </h3>
     <div class="container" id="main">
 
 
@@ -78,23 +80,32 @@
         </form>
 
     </div>
+
     <h2>Tips For Performing Operations </h2>
-    <p class="para" style=" margin-top: 15px;">Tips1 :- You Can add Tasks by entering above.
-    </p>
-    <p> Tips 2:-You can edit by tapping edit button
-        button then hit enter button You will get edited content </p>
-    <p> Tips 3:-You can delete by tapping delete button
-    </p>
+    <div class="container">
+        <p class="para" style=" margin-top: 15px;">Tips1 :- You Can add Tasks by entering above.
+        </p>
+        <p> Tips 2:-You can edit by tapping edit button
+            button then hit enter button You will get edited content </p>
+        <p> Tips 3:-You can delete by tapping delete button
+        </p>
+        <button id="hide">Hide</button>
+        <button id="show">Show</button>
+    </div>
 </body>
 <script>
     $(document).ready(function () {
         // styling the paragraph//
-        $("p").animate({
+        $("h3").animate({
             "margin-left": "30%"
         }, "slow");
 
-
-
+        $("#hide").click(function () {
+            $("p").hide(1000);
+        });
+        $("#show").click(function () {
+            $("p").show(1000);
+        });
 
 
         // input text //
