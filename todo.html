@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link data-require="bootstrap@3.3.6" data-semver="4.1.3" rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script data-require="bootstrap@3.3.6" data-semver="4.1.3"
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script data-require="jquery" data-semver="3.2.1"
+        src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <style>
+        .form-control {
+            display: inline-block;
+        }
+
+        h1 {
+            margin-top: 1px;
+            font-size: 25px;
+            height: 60px;
+            padding: 15px;
+            color: white;
+            text-align: center;
+            background-color: rgb(62, 150, 223);
+        }
+
+        h2 {
+            margin-top: 10px;
+            font-size: 25px;
+            height: 60px;
+            padding: 15px;
+            color: white;
+            text-align: center;
+            background-color: rgb(230, 45, 21);
+        }
+
+        .text_holder {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            word-wrap: break-word;
+        }
+
+        #main {
+            margin-top: 50px;
+            background-color: #ffffff;
+            border-radius: 5px;
+            width: 50%;
+            border: 1px solid #545454;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center; ">Todo </h1>
+    <p class="para" style=" margin-top: 15px;">Here You can add Your work and then delete after the completion
+    </p>
+    <div class="container" id="main">
+
+
+        <form role="form" id="inputTask" style="text-align: center; margin-top: 20px;">
+            <label>
+                <input type="text" class="form-control" id="task" name="Item" placeholder="What do you need to do?">
+                <input type="submit" value="Add" style="margin-top: 20px;" class="btn btn-success">
+            </label>
+        </form>
+        <form>
+            <ol class="list-group taskList">
+            </ol>
+
+        </form>
+
+    </div>
+    <h2>Tips For Performing Operations </h2>
+    <p class="para" style=" margin-top: 15px;">Tips1 :- You Can add Tasks by entering above.
+    </p>
+    <p> Tips 2:-You can edit by tapping edit button
+        button then hit enter button You will get edited content </p>
+    <p> Tips 3:-You can delete by tapping delete button
+    </p>
+</body>
+<script>
+    $(document).ready(function () {
+        // styling the paragraph//
+        $("p").animate({
+            "margin-left": "30%"
+        }, "slow");
+
+
+
+
+
+        // input text //
+        $("#inputTask").submit(function (event) {
+            event.preventDefault();
+            var deleteButton = "<button class='delete btn btn-danger'>Delete</button>";
+            var editButton = "<button class='edit btn btn-success'>Edit</button>";
+            var twoButtons = "<div class='btn-group pull-right'>" + deleteButton + editButton + "</div>";
+            var checkBox = "<div class='checkbox'><label><input type='checkbox' class='pull-right'></label></div>";
+
+            // after adding getting the text by appending//
+            $(".taskList").append("<li class='list-group-item'>" + "<div class='text_holder'>" + $("#task").val() + twoButtons + "</div>" + checkBox + "</li>");
+            $("#task").val('');
+        });
+
+
+
+        //  deleting the text   // 
+        $(".taskList").on("click", "button.delete", function () {
+            $(this).closest("li").remove();
+        });
+
+
+
+
+        //   if we edit the text we will get in this  //
+        $(".taskList").on("click", "button.edit", function () {
+            var editItemBox = "<form class='edit_input_box'><input type='text' class='itembox'></form>";
+            var originalItem = $(this).parent().val();
+            var deleteButton = "<button class='delete btn btn-danger'>Delete</button>";
+            var editButton = "<button class='edit btn btn-success'> Edit</button>";
+            var twoButtons = "<div class='btn-group pull-right'>" + deleteButton + editButton + "</div>";
+            $(this).closest("div.text_holder").replaceWith(editItemBox);
+
+
+
+            $("form.edit_input_box ").on("submit", function () {
+
+
+                var checkBox = "<label><input type='checkbox'></label>";
+                $(this).replaceWith("<div>" + $(".itembox").val() + twoButtons + "</div>");
+            });
+
+        });
+
+    });
+
+
+
+</script>
+
+
+
+</html>
